@@ -104,14 +104,10 @@ function Get-AccessTokenFromCache
             if((($tAudience -ne $tResource) -and ($Script:RESIDs[$tAudience] -ne $tResource)) -and ($Force -eq $False))
             {
                 # Wrong audience
-                Write-Verbose "ACCESS TOKEN HAS WRONG AUDIENCE: $tAudience. Exptected: $tResource."
-                Throw "The audience of the access token ($tAudience) is wrong. Should be $tResource!"
+                Write-Warning "The audience of the access token ($tAudience) is wrong. Should be $tResource!"
             }
-            else
-            {
-                # Just return the passed access token
-                $retVal=$AccessToken
-            }
+            # Just return the passed access token
+            $retVal=$AccessToken
         }
 
         # Check the expiration
